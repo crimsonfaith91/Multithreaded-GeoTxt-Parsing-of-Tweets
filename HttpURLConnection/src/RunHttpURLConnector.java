@@ -117,9 +117,9 @@ public class RunHttpURLConnector {
 		/* fetch tweets of defined range from database */
 		private void getTweetItemsFromSQLServer() throws Exception {		
 			try {				
-				String username = "juntee";
-				String password = "vaccine";
-				String url = "jdbc:sqlserver://voxel.ecn.purdue.edu";
+				String username = "xxx";
+				String password = "xxx";
+				String url = "jdbc:sqlserver://xxx.xxx.purdue.edu";
 	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 	            Connection conn = DriverManager.getConnection(url, username, password);
 	            Statement statement = conn.createStatement();
@@ -196,33 +196,33 @@ public class RunHttpURLConnector {
 					curTweetItemsToWrite.add(processedTweetItems.poll());
 				}	
 				
-				String url = "jdbc:sqlserver://voxel.ecn.purdue.edu"; 
-	            String username = "juntee";
-	    		String password = "vaccine";
-	            Connection conn = DriverManager.getConnection(url, username, password); 
-	            Statement st = conn.createStatement(); 
+				String url = "jdbc:sqlserver://xxx.xxx.purdue.edu"; 
+	        		String username = "juntee";
+	    			String password = "vaccine";
+	            		Connection conn = DriverManager.getConnection(url, username, password); 
+	            		Statement st = conn.createStatement(); 
 
-	            for(int i = 0; i < curTweetItemsToWrite.size(); i++) {
-		            try {
-	            		if(curTweetItemsToWrite.get(i).tweet_text.length() > 0) {
-	            			st.executeUpdate("INSERT INTO [sns_viz].[dbo].[tweet_geotxt] " + 
-	            				"VALUES ('" + curTweetItemsToWrite.get(i).tweet_id + "', '" + curTweetItemsToWrite.get(i).tweet_text + "')");
+	            		for(int i = 0; i < curTweetItemsToWrite.size(); i++) {
+		            		try {
+	            				if(curTweetItemsToWrite.get(i).tweet_text.length() > 0) {
+	            					st.executeUpdate("INSERT INTO [sns_viz].[dbo].[tweet_geotxt] " + 
+	            						"VALUES ('" + curTweetItemsToWrite.get(i).tweet_id + "', '" + curTweetItemsToWrite.get(i).tweet_text + "')");
+	            				}
+	            			}
+	            			catch (Exception e) {
+	            				continue;
+	            			}
 	            		}
-	            	}
-	            	catch (Exception e) {
-	            		continue;
-	            	}
-	            }
 	            
-	            conn.close();
+	            		conn.close();
 	            
-	            System.out.println("Wrote " + curTweetItemsToWrite.size() + " tweets!");
+	            		System.out.println("Wrote " + curTweetItemsToWrite.size() + " tweets!");
 	            
-	            //processed_tweet_num += curTweetItemsToWrite.size();          
-	        } catch (Exception e) {
-	        	//do nothing
-	            //System.out.println(e.getMessage()); 
-	        } 
+	            		//processed_tweet_num += curTweetItemsToWrite.size();          
+	        	} catch (Exception e) {
+	        		//do nothing
+	            		//System.out.println(e.getMessage()); 
+	        	} 
 		}
 	}
 	
